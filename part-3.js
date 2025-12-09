@@ -9,7 +9,7 @@ const input = args.shortcutParameter;
 
 /**
  * Support languages
- * @typedef {"english" | "french"} Language
+ * @typedef {"english" | "french" | "german" | "japanese" | "en" | "fr" | "de" | "jp"} Language
  */
 
 /**

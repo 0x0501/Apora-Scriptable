@@ -6,11 +6,20 @@
  */
 
 /**
- * @type {string[]}
+ * @type {{data: string, config: string}}
  */
-const input = args.shortcutParameter.split(" ");
+const input = args.shortcutParameter;
 
-const remove_specials = input
+/**
+ * @type {import("./part-3").ConfigType}
+ */
+const config = JSON.parse(input.config);
+
+const strArray = config.language === "jp" || config.language === "japanese"
+	? input.data.split("")
+	: input.data.split(" ");
+
+const remove_specials = strArray
 	.map((i) => i.replace(/[.,?"]+/gi, ""))
 	.filter((i) => i !== "");
 
