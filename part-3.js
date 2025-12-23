@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @license GNU General Public License v3.0
  * @description A Scriptable script to use Apora on iOS/iPad devices.
@@ -26,6 +28,7 @@ const input = args.shortcutParameter;
  * @property {boolean} context - Enable Context feature.
  * @property {"US" | "GB"} variant - Pronunciation variant, effect IPA and speaking.
  * @property {Language} language
+ * @property {boolean} translation
  */
 
 /**
@@ -36,6 +39,7 @@ const input = args.shortcutParameter;
  * @property {string} chineseMeaning
  * @property {"US" | "GB"} pronunciationVariant
  * @property {string} ipa
+ * @property {string} [translation]
  * @property {string} [context] - Context for the inquiring term, if `context` feature is enabled
  * @property {string} [replacing] - A special field for replacing term in context, no matter which form the term turned into, we can always look it up by searching `replacing` in context field. This will only present when context enabled.
  * @property {string} [fileNameTag] - Audio filename tag, if `speech` feature is enabled
@@ -123,6 +127,11 @@ const fields = {
 		? {
 			Pronunciation:
 				`${AUDIO_GATEWAY}/${config.token}/${data.fileNameTag}.wav`,
+		}
+		: {}),
+	...(config.translation || data.translation
+		? {
+			Translation: data.translation,
 		}
 		: {}),
 };
